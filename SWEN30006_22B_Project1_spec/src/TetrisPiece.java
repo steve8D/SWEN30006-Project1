@@ -7,11 +7,14 @@ import java.util.ArrayList;
 public abstract class TetrisPiece extends Actor {
     protected String blockName;
     private Location[][] r = new Location[4][4];
-    TetrisPiece(Tetris tetris) {
+    TetrisPiece(Tetris tetris, String blockName, int blockId) {
         super();
         this.tetris = tetris;
+        this.blockName = blockName;
 
         updateRotationId(r);
+        for (int i = 0; i < r.length; i++)
+            blocks.add(new TetroBlock(blockId, r[i]));
     }
 
     protected abstract void updateRotationId(Location[][] r);
@@ -85,7 +88,7 @@ public abstract class TetrisPiece extends Actor {
         autoBlockIndex++;
     }
 
-    // Cechk if the block can be played automatically based on the properties file
+    // Check if the block can be played automatically based on the properties file
     private boolean canAutoPlay() {
         if (autoBlockMove != null && !autoBlockMove.equals("")) {
             if (autoBlockMove.length() > autoBlockIndex) {

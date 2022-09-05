@@ -2,17 +2,14 @@
 package src;
 import ch.aplu.jgamegrid.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 class L extends TetrisPiece
 {
-  private final int blockId = 2;
+  private static final int BLOCK_ID = 2;
+  private static final String BLOCK_NAME = "L";
 
   L(Tetris tetris)
   {
-    super(tetris);
-    this.blockName = "L";
+    super(tetris, BLOCK_NAME, BLOCK_ID);
   }
 
   @Override
@@ -37,8 +34,5 @@ class L extends TetrisPiece
     r[1][3] = new Location(new Location(0, 0));
     r[2][3] = new Location(new Location(0, 1));
     r[3][3] = new Location(new Location(1, 1));
-
-    for (int i = 0; i < r.length; i++)
-      blocks.add(new TetroBlock(blockId, r[i]));
   }
 }
