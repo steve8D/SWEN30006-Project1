@@ -62,7 +62,7 @@ public class Tetris extends JFrame implements GGActListener {
     }
 
     // create a block and assign to a preview mode
-    Actor createRandomTetrisBlock() {
+    TetrisPiece createRandomTetrisBlock() {
         if (blockPreview != null)
             blockPreview.removeSelf();
 
@@ -73,7 +73,7 @@ public class Tetris extends JFrame implements GGActListener {
         }
 
         blockActionIndex++;
-        Actor t = null;
+        TetrisPiece t = null;
         int rnd = random.nextInt(7);
         switch (rnd) {
             case 0:
@@ -142,7 +142,6 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
         }
         // Show preview tetrisBlock
-
         t.setSlowDown(slowDown);
         return t;
     }
