@@ -5,19 +5,30 @@ import ch.aplu.jgamegrid.*;
 import java.util.ArrayList;
 
 public abstract class TetrisPiece extends Actor {
+
     protected String blockName;
-    private Location[][] r = new Location[4][4];
+    protected int ID;
+    private Location[][] r ;
+
+
     TetrisPiece(Tetris tetris, String blockName, int blockId) {
         super();
         this.tetris = tetris;
         this.blockName = blockName;
+        this.ID = blockId;
 
-        updateRotationId(r);
+        // no source is available for the new tetris blocks images 0, 1 and 2
+        int sourceGifId = blockId%7;
+
+
+
+        r = updateRotationId();
         for (int i = 0; i < r.length; i++)
-            blocks.add(new TetroBlock(blockId, r[i]));
+
+            blocks.add(new TetroBlock(sourceGifId, r[i]));
     }
 
-    protected abstract void updateRotationId(Location[][] r);
+    protected abstract Location[][] updateRotationId( );
 
     public String toString() {
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
@@ -35,6 +46,7 @@ public abstract class TetrisPiece extends Actor {
         this.autoBlockMove = autoBlockMove;
     }
     // The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
+
     public void act()
     {
         if (isStarting) {

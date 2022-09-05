@@ -13,7 +13,9 @@ class L extends TetrisPiece
   }
 
   @Override
-  protected void updateRotationId(Location[][] r) {
+  protected Location[][] updateRotationId() {
+
+    Location[][] r = new Location[4][4];
     // rotId 0
     r[0][0] = new Location(new Location(1, 0));
     r[1][0] = new Location(new Location(0, 0));
@@ -34,5 +36,7 @@ class L extends TetrisPiece
     r[1][3] = new Location(new Location(0, 0));
     r[2][3] = new Location(new Location(0, 1));
     r[3][3] = new Location(new Location(1, 1));
+    return r;
+
   }
 }
