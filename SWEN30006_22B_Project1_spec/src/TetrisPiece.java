@@ -60,7 +60,7 @@ public abstract class TetrisPiece extends Actor {
                 {
                     setActEnabled(false);
                     gameGrid.addActor(nextTetrisBlock, new Location(6, 0));
-                    tetris.setCurrentTetrisBlock(nextTetrisBlock);
+                    tetris.setCurrentTetrisBlock((TetrisPiece) nextTetrisBlock);
                 }
             }
             nb++;
