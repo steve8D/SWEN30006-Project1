@@ -18,7 +18,7 @@ public class statisticsLogger {
     private int currentRound = 0;
 
     //This method creates the text for the statistics file
-    public List<String> statisticsTextToString(String difficultyLevel){
+    private List<String> statisticsTextToString(String difficultyLevel){
         List<String> topText = Arrays.asList("Difficulty: " + difficultyLevel, "Average score per round: " +findAverageScore());
         for(int i=1; i<currentRound; i++){
             topText.add("------------------------------------------");
@@ -47,7 +47,7 @@ public class statisticsLogger {
     }
 
     //This method writes to the statistics text file
-    private void writeToFile(String difficultyLevel){
+    public void writeToFile(String difficultyLevel){
         Path file = Paths.get(STATISTICFILEPATH);
         try {
             Files.write(file, statisticsTextToString(difficultyLevel), StandardCharsets.UTF_8);
@@ -57,7 +57,7 @@ public class statisticsLogger {
     }
 
     //This method reads the statistics text file
-    private void readFile(String path){
+    public void readFile(String path){
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
@@ -85,13 +85,13 @@ public class statisticsLogger {
     }
 
     //This method gets called every time the score is updated
-    private void updateRoundScore(int round, int score){
+    public void updateRoundScore(int round, int score){
         this.currentRound=round;
         this.roundScore[round]=score;
     }
 
     //This method gets called every time a new piece is added/created
-    private void addPieceToStat(int round, String piece){
+    public void addPieceToStat(int round, String piece){
         int newValue = getHashValue(round,piece)+1;
         pieceCountArray[round].put(piece,newValue);
     }
