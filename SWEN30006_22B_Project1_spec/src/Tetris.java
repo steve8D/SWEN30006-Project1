@@ -75,7 +75,10 @@ public class Tetris extends JFrame implements GGActListener {
         blockActionIndex++;
         TetrisPiece t = null;
         TetrisPiece preview = null;
-        int rnd = random.nextInt(7);
+        int rnd = generateRandomBlockId();
+
+        System.out.println(rnd);
+
         switch (rnd) {
             case 0:
                 t = new I(this);
@@ -105,6 +108,18 @@ public class Tetris extends JFrame implements GGActListener {
                 t = new Z(this);
                 preview = new Z(this);
                 break;
+            case 7:
+                t = new Plus(this);
+                preview = new Plus(this);
+                break;
+            case 8:
+                t = new P(this);
+                preview = new P(this);
+                break;
+            case 9:
+                t = new Q(this);
+                preview = new Q(this);
+                break;
         }
         if (isAuto) {
             t.setAutoBlockMove(currentBlockMove);
@@ -115,6 +130,12 @@ public class Tetris extends JFrame implements GGActListener {
         // Show preview tetrisBlock
         t.setSlowDown(slowDown);
         return t;
+    }
+
+    /*helper function for returning a block Id out of the valid blocks*/
+    int generateRandomBlockId(){
+        return random.nextInt(10);
+
     }
 
     void setCurrentTetrisBlock(TetrisPiece t) {
