@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class Driver {
-    public static final String DEFAULT_PROPERTIES_PATH = "SWEN30006_22B_Project1_spec\\properties\\test1.properties";
+    public static final String DEFAULT_PROPERTIES_PATH = "SWEN30006_22B_Project1_spec\\properties\\test2.properties";
 
     /**
      * Starting point
@@ -26,7 +26,7 @@ public class Driver {
         TetrisGameCallback gameCallback = new TetrisGameCallback(isLoggingTest);
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tetris(gameCallback, properties).setVisible(true);
+                new TetrisInitialize(gameCallback, properties).setVisible(true);
             }
         });
     }

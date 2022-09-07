@@ -11,16 +11,14 @@ public abstract class TetrisPiece extends Actor {
     private Location[][] r ;
 
 
-    TetrisPiece(Tetris tetris, String blockName, int blockId) {
+    TetrisPiece(Levels levels, String blockName, int blockId) {
         super();
-        this.tetris = tetris;
+        this.levels = levels;
         this.blockName = blockName;
         this.ID = blockId;
 
         // no source is available for the new tetris blocks images 0, 1 and 2
         int sourceGifId = blockId%7;
-
-
 
         r = updateRotationId();
         for (int i = 0; i < r.length; i++)
@@ -34,7 +32,7 @@ public abstract class TetrisPiece extends Actor {
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
     }
 
-    protected Tetris tetris;
+    protected Levels levels;
     private boolean isStarting = true;
     private int rotId = 0;
     private int nb;
@@ -63,16 +61,16 @@ public abstract class TetrisPiece extends Actor {
         {
             setDirection(90);
             if (nb == 1)
-                nextTetrisBlock = tetris.createRandomTetrisBlock();
+                nextTetrisBlock = levels.createRandomTetrisBlock();
             if (!advance())
             {
                 if (nb == 0)  // Game is over when tetrisBlock cannot fall down
-                    tetris.gameOver();
+                    levels.gameOver();
                 else
                 {
                     setActEnabled(false);
                     gameGrid.addActor(nextTetrisBlock, new Location(6, 0));
-                    tetris.setCurrentTetrisBlock((TetrisPiece) nextTetrisBlock);
+                    levels.setCurrentTetrisBlock((TetrisPiece) nextTetrisBlock);
                 }
             }
             nb++;
