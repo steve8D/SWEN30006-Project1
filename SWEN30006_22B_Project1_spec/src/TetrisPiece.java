@@ -5,11 +5,9 @@ import ch.aplu.jgamegrid.*;
 import java.util.ArrayList;
 
 public abstract class TetrisPiece extends Actor {
-
     protected String blockName;
     protected int ID;
     private Location[][] r ;
-
 
     TetrisPiece(Levels levels, String blockName, int blockId) {
         super();

@@ -1,10 +1,8 @@
 package src;
 
 import ch.aplu.jgamegrid.Actor;
-import ch.aplu.jgamegrid.GGActListener;
 import ch.aplu.jgamegrid.Location;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
@@ -15,7 +13,8 @@ public class Levels {
         return currentBlock;
     }
     private int score = 0;
-    private int slowDown = 5;
+    private int fallSpeed = 5;
+    private int rounds = 0;
     private boolean isAuto = false;
     private Random random = new Random(0);
     private int seed = 30006;
@@ -25,6 +24,7 @@ public class Levels {
     private int blockActionIndex = 0;
     private TetrisGameCallback gameCallback;
     private UIController uiController;
+    private ch.aplu.jgamegrid.GameGrid gameGrid1;
     public Levels(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
         initWithProperties(properties);
         this.gameCallback = gameCallback;
@@ -32,7 +32,8 @@ public class Levels {
         this.gameGrid1 = uiController.gameGrid1;
         this.blockActionIndex = 0;
         this.score = 0;
-        this.slowDown = 5;
+        this.rounds = 1;
+        this.fallSpeed = 5;
     }
 
     // Initialise object
@@ -45,7 +46,7 @@ public class Levels {
     }
 
     // create a block and assign to a preview mode
-    TetrisPiece createRandomTetrisBlock() {
+    public TetrisPiece createRandomTetrisBlock() {
         // If the game is in auto test mode, then the block will be moved according to the blockActions
         String currentBlockMove = "";
         if (blockActions.length > blockActionIndex) {
@@ -105,16 +106,16 @@ public class Levels {
         uiController.showBlockPreview(preview);
 
         // Show preview tetrisBlock
-        t.setSlowDown(slowDown);
+        t.setSlowDown(fallSpeed);
         return t;
     }
-    void setCurrentTetrisBlock(TetrisPiece t) {
+    public void setCurrentTetrisBlock(TetrisPiece t) {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
     }
 
-    void setFallSpeed(int fallSpeed) {
-        this.slowDown = fallSpeed;
+    private void setFallSpeed(int fallSpeed) {
+        this.fallSpeed = fallSpeed;
     }
 
     public void removeFilledLine() {
@@ -146,19 +147,19 @@ public class Levels {
                 uiController.showScore(score);
                 // Set speed of tetrisBlocks
                 if (score > 10)
-                    slowDown = 4;
+                    fallSpeed = 4;
                 if (score > 20)
-                    slowDown = 3;
+                    fallSpeed = 3;
                 if (score > 30)
-                    slowDown = 2;
+                    fallSpeed = 2;
                 if (score > 40)
-                    slowDown = 1;
+                    fallSpeed = 1;
                 if (score > 50)
-                    slowDown = 0;
+                    fallSpeed = 0;
             }
         }
     }
-    void gameOver() {
+    public void gameOver() {
         currentBlock = null;
         uiController.showGameOver();
         gameGrid1.doPause();
@@ -167,8 +168,11 @@ public class Levels {
         }
     }
     /*helper function for returning a block Id out of the valid blocks*/
-    int generateRandomBlockId(){
+    private int generateRandomBlockId(){
         return random.nextInt(10);
     }
-    public ch.aplu.jgamegrid.GameGrid gameGrid1;
+
+    public void incrementRoundCount() {
+        this.rounds++;
+    }
 }

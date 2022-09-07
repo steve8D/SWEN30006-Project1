@@ -12,10 +12,10 @@ public class UIController {
     private TetrisPiece blockPreview = null;   // block in preview window
     private Levels levels;
     private int score = 0;
-    public UIController(TetrisGameCallback gameCallback, Properties properties, TetrisInitialize tetrisInitialize) {
-        gameGrid1 = tetrisInitialize.gameGrid1;
-        gameGrid2 = tetrisInitialize.gameGrid2;
-        scoreText = tetrisInitialize.scoreText;
+    public UIController(TetrisGameCallback gameCallback, Properties properties, Tetris tetris) {
+        gameGrid1 = tetris.gameGrid1;
+        gameGrid2 = tetris.gameGrid2;
+        scoreText = tetris.scoreText;
         levels = new Levels(gameCallback, properties, this);
         score = 0;
         showScore(score);
@@ -62,6 +62,7 @@ public class UIController {
         });
     }
     public TetrisPiece createFirstTetrisBlock() {
+        levels.incrementRoundCount();
         currentBlock = levels.createRandomTetrisBlock();
         return currentBlock;
     }
@@ -71,7 +72,7 @@ public class UIController {
         levels.removeFilledLine();
     }
 
-    public ch.aplu.jgamegrid.GameGrid gameGrid1;
-    public ch.aplu.jgamegrid.GameGrid gameGrid2;
-    public javax.swing.JTextField scoreText;
+    protected ch.aplu.jgamegrid.GameGrid gameGrid1;
+    private ch.aplu.jgamegrid.GameGrid gameGrid2;
+    private javax.swing.JTextField scoreText;
 }

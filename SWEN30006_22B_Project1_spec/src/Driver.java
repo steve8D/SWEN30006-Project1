@@ -1,6 +1,5 @@
 package src;
 
-import ch.aplu.jgamegrid.Actor;
 import src.utility.PropertiesLoader;
 
 import java.awt.*;
@@ -26,7 +25,7 @@ public class Driver {
         TetrisGameCallback gameCallback = new TetrisGameCallback(isLoggingTest);
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TetrisInitialize(gameCallback, properties).setVisible(true);
+                new Tetris(gameCallback, properties).setVisible(true);
             }
         });
     }

@@ -6,7 +6,7 @@ import ch.aplu.jgamegrid.Location;
 import javax.swing.*;
 import java.util.Properties;
 
-public class TetrisInitialize extends JFrame implements GGActListener {
+public class Tetris extends JFrame implements GGActListener {
     private TetrisPiece currentBlock = null;  // Currently active block
     private UIController uiController;
     private boolean isAuto = false;
@@ -23,7 +23,7 @@ public class TetrisInitialize extends JFrame implements GGActListener {
     public javax.swing.JButton startBtn;
     private TetrisComponents tetrisComponents;
 
-    public TetrisInitialize(TetrisGameCallback gameCallback, Properties properties) {
+    public Tetris(TetrisGameCallback gameCallback, Properties properties) {
         // Initialise value
         initWithProperties(properties);
 
