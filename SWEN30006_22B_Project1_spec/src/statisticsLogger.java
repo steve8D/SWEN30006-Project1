@@ -17,6 +17,8 @@ public class statisticsLogger {
     private HashMap<String, Integer>[] pieceCountArray = new HashMap[MAXROUNDSSTORED];
     private int currentRound = 0;
 
+    private String previousRoundStats;
+
     //This method creates the text for the statistics file
     private List<String> statisticsTextToString(String difficultyLevel){
         List<String> topText = Arrays.asList("Difficulty: " + difficultyLevel, "Average score per round: " +findAverageScore());
@@ -39,9 +41,10 @@ public class statisticsLogger {
         return topText;
     }
 
+
     private int getHashValue (int round, String key){
-        if(pieceCountArray[round].get("i")!=null){
-            return pieceCountArray[round].get("i");
+        if(pieceCountArray[round].get(key)!=null){
+            return pieceCountArray[round].get(key);
         }
         return 0;
     }
@@ -86,14 +89,17 @@ public class statisticsLogger {
 
     //This method gets called every time the score is updated
     public void updateRoundScore(int round, int score){
-        this.currentRound=round;
-        this.roundScore[round]=score;
+        if(score == 0) {
+            this.currentRound = round;
+        }
+        this.roundScore[currentRound]=score;
     }
 
     //This method gets called every time a new piece is added/created
-    public void addPieceToStat(int round, String piece){
-        int newValue = getHashValue(round,piece)+1;
-        pieceCountArray[round].put(piece,newValue);
+    public void addPieceToStat( String piece){
+        int newValue = getHashValue(currentRound,piece)+1;
+        pieceCountArray[currentRound].put(piece,newValue);
     }
+
 }
 
