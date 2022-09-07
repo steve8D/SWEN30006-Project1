@@ -102,7 +102,6 @@ public class Levels {
         if (isAuto) {
             t.setAutoBlockMove(currentBlockMove);
         }
-        currentBlock = t;
         uiController.showBlockPreview(preview);
 
         // Show preview tetrisBlock
@@ -144,6 +143,7 @@ public class Levels {
                 gameGrid1.refresh();
                 score++;
                 gameCallback.changeOfScore(score);
+                uiController.showScore(score);
                 // Set speed of tetrisBlocks
                 if (score > 10)
                     slowDown = 4;
@@ -159,6 +159,7 @@ public class Levels {
         }
     }
     void gameOver() {
+        currentBlock = null;
         uiController.showGameOver();
         gameGrid1.doPause();
         if (isAuto) {

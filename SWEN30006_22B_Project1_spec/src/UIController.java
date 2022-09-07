@@ -11,10 +11,8 @@ public class UIController {
     private TetrisPiece currentBlock = null;  // Currently active block
     private TetrisPiece blockPreview = null;   // block in preview window
     private Levels levels;
-    private TetrisInitialize tetrisInitialize;
     private int score = 0;
     public UIController(TetrisGameCallback gameCallback, Properties properties, TetrisInitialize tetrisInitialize) {
-        this.tetrisInitialize = tetrisInitialize;
         gameGrid1 = tetrisInitialize.gameGrid1;
         gameGrid2 = tetrisInitialize.gameGrid2;
         scoreText = tetrisInitialize.scoreText;
@@ -27,7 +25,6 @@ public class UIController {
             blockPreview.removeSelf();
         previewBlock.display(gameGrid2, new Location(2, 1));
         blockPreview = previewBlock;
-        currentBlock = levels.getCurrentBlock();
     }
     void showGameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
@@ -36,6 +33,9 @@ public class UIController {
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
+        if (levels.getCurrentBlock() != null) {
+            currentBlock = levels.getCurrentBlock();
+        }
         switch (keyEvent) {
             case KeyEvent.VK_UP:
                 currentBlock.rotate();
@@ -54,23 +54,24 @@ public class UIController {
         }
     }
 
-    private void showScore(final int score) {
+    public void showScore(final int score) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 scoreText.setText(score + " points");
             }
         });
     }
-    public TetrisPiece createRandomTetrisBlock() {
-        return levels.createRandomTetrisBlock();
+    public TetrisPiece createFirstTetrisBlock() {
+        currentBlock = levels.createRandomTetrisBlock();
+        return currentBlock;
     }
-
-    public ch.aplu.jgamegrid.GameGrid gameGrid1;
-    public ch.aplu.jgamegrid.GameGrid gameGrid2;
-    public javax.swing.JTextField scoreText;
 
     public void act() {
         moveBlock(gameGrid1.getKeyCode());
         levels.removeFilledLine();
     }
+
+    public ch.aplu.jgamegrid.GameGrid gameGrid1;
+    public ch.aplu.jgamegrid.GameGrid gameGrid2;
+    public javax.swing.JTextField scoreText;
 }

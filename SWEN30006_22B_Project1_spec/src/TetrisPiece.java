@@ -43,8 +43,8 @@ public abstract class TetrisPiece extends Actor {
     public void setAutoBlockMove(String autoBlockMove) {
         this.autoBlockMove = autoBlockMove;
     }
-    // The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
 
+    // The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
     public void act()
     {
         if (isStarting) {
