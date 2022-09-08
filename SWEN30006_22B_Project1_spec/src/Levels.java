@@ -110,6 +110,10 @@ public abstract class Levels {
         return t;
     }
     public void setCurrentTetrisBlock(TetrisPiece t) {
+        //here call ryan's thing
+
+
+
         gameCallback.changeOfBlock(currentBlock);
 
 

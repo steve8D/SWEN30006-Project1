@@ -22,6 +22,7 @@ public class UIController {
         String difficulty = properties.getProperty("difficulty");
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
         System.out.println(difficulty);
+
         if(difficulty.equals( "easy")){
             levels = new Easy(gameCallback, properties, this);
         }
@@ -35,12 +36,16 @@ public class UIController {
         score = 0;
         showScore(score);
     }
+
+    //display the block on the preview window
     void showBlockPreview(TetrisPiece previewBlock) {
         if (blockPreview != null)
             blockPreview.removeSelf();
         previewBlock.display(gameGrid2, new Location(2, 1));
         blockPreview = previewBlock;
     }
+
+    //show the game over screen
     void showGameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
@@ -56,7 +61,6 @@ public class UIController {
                     if(levels.canRotate()){
                         currentBlock.rotate();
                     }
-
                     break;
                 case KeyEvent.VK_LEFT:
                     currentBlock.left();
@@ -74,6 +78,7 @@ public class UIController {
 
     }
 
+    // show the score on the text box
     public void showScore(final int score) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {

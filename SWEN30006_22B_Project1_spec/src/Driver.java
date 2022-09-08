@@ -8,12 +8,12 @@ import java.util.Properties;
 
 public class Driver {
     public static final String DEFAULT_PROPERTIES_PATH = "SWEN30006_22B_Project1_spec\\properties\\test1.properties";
+    //REMEMBER TO CHANGE THIS BACK
 
     /**
      * Starting point
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
         String propertiesPath = DEFAULT_PROPERTIES_PATH;
         System.out.println("Arrays.asList(args) = " + Arrays.asList(args));

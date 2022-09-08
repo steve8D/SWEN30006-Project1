@@ -32,14 +32,11 @@ public class Tetris extends JFrame implements GGActListener {
         tetrisComponents.initComponents(this);
         gameGrid1.addActListener(this);
 
-
         // Add the first block to start
         uiController = new UIController(gameCallback, properties, this);
         uiController.start();
 
-
         gameGrid1.doRun();
-
         // Do not lose keyboard focus when clicking this window
         gameGrid2.setFocusable(false);
         setTitle("SWEN30006 Tetris Madness");
