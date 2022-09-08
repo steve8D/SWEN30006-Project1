@@ -15,7 +15,20 @@ public class UIController {
         gameGrid1 = tetris.gameGrid1;
         gameGrid2 = tetris.gameGrid2;
         scoreText = tetris.scoreText;
-        levels = new Levels(gameCallback, properties, this);
+
+        String difficulty = properties.getProperty("difficulty");
+        System.out.println(difficulty);
+        if(difficulty.equals( "easy")){
+            levels = new Easy(gameCallback, properties, this);
+
+        }
+        else if(difficulty.equals("medium")){
+            levels = new Medium(gameCallback, properties, this);
+        }
+        else if(difficulty.equals("madness")){
+            levels = new Madness(gameCallback, properties, this);
+        }
+
         score = 0;
         showScore(score);
     }

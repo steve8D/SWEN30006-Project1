@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
-public class Levels {
+public abstract class Levels {
     private TetrisPiece currentBlock = null;  // Currently active block
     public TetrisPiece getCurrentBlock() {
         return currentBlock;
     }
     private int score = 0;
-    private int fallSpeed = 5;
+    private int slowDown = 5;
     private int rounds = 0;
     private boolean isAuto = false;
-    private Random random = new Random(0);
+    protected Random random = new Random(0);
     private int seed = 30006;
     // For testing mode, the block will be moved automatically based on the blockActions.
     // L is for Left, R is for Right, T is for turning (rotating), and D for down
@@ -33,7 +33,7 @@ public class Levels {
         this.blockActionIndex = 0;
         this.score = 0;
         this.rounds = 1;
-        this.fallSpeed = 5;
+        this.slowDown = 5;
     }
 
     // Initialise object
@@ -106,7 +106,7 @@ public class Levels {
         uiController.showBlockPreview(preview);
 
         // Show preview tetrisBlock
-        t.setSlowDown(fallSpeed);
+        t.setSlowDown(slowDown);
         return t;
     }
     public void setCurrentTetrisBlock(TetrisPiece t) {
@@ -114,8 +114,8 @@ public class Levels {
         currentBlock = t;
     }
 
-    private void setFallSpeed(int fallSpeed) {
-        this.fallSpeed = fallSpeed;
+    private void setSlowDown(int slowDown) {
+        this.slowDown = slowDown;
     }
 
     public void removeFilledLine() {
@@ -147,15 +147,15 @@ public class Levels {
                 uiController.showScore(score);
                 // Set speed of tetrisBlocks
                 if (score > 10)
-                    fallSpeed = 4;
+                    slowDown = 4;
                 if (score > 20)
-                    fallSpeed = 3;
+                    slowDown = 3;
                 if (score > 30)
-                    fallSpeed = 2;
+                    slowDown = 2;
                 if (score > 40)
-                    fallSpeed = 1;
+                    slowDown = 1;
                 if (score > 50)
-                    fallSpeed = 0;
+                    slowDown = 0;
             }
         }
     }
@@ -168,9 +168,8 @@ public class Levels {
         }
     }
     /*helper function for returning a block Id out of the valid blocks*/
-    private int generateRandomBlockId(){
-        return random.nextInt(7);
-    }
+    abstract protected int generateRandomBlockId();
+    abstract protected double getSpeedMultiplier();
 
     public void incrementRoundCount() {
         this.rounds++;
