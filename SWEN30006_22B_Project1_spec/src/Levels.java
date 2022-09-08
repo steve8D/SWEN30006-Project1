@@ -15,6 +15,7 @@ public abstract class Levels {
     private int score = 0;
     private int slowDown = 5;
     private int rounds = 0;
+    private String difficulty;
     private boolean isAuto = false;
     protected Random random = new Random(0);
     private int seed = 30006;
@@ -24,15 +25,17 @@ public abstract class Levels {
     private int blockActionIndex = 0;
     private TetrisGameCallback gameCallback;
     protected UIController uiController;
+    private StatisticsLogger statisticsLogger;
     private ch.aplu.jgamegrid.GameGrid gameGrid1;
     public Levels(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
         initProperties(properties);
+        this.statisticsLogger = new StatisticsLogger();
         this.gameCallback = gameCallback;
         this.uiController = uiController;
         this.gameGrid1 = uiController.gameGrid1;
         this.blockActionIndex = 0;
         this.score = 0;
-        this.rounds = 1;
+        this.rounds = 0;
         this.slowDown = 5;
     }
 
@@ -41,6 +44,7 @@ public abstract class Levels {
         this.seed = Integer.parseInt(properties.getProperty("seed", "30006"));
         random = new Random(seed);
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
+        difficulty = properties.getProperty("difficulty");
         String blockActionProperty = properties.getProperty("autoBlockActions", "");
         blockActions = blockActionProperty.split(",");
     }
@@ -103,6 +107,7 @@ public abstract class Levels {
         if (isAuto) {
             t.setAutoBlockMove(currentBlockMove);
         }
+        statisticsLogger.addPieceToStat(t.blockName);
         uiController.showBlockPreview(preview);
 
         // Show preview tetrisBlock
@@ -110,17 +115,11 @@ public abstract class Levels {
         return t;
     }
     public void setCurrentTetrisBlock(TetrisPiece t) {
-        //here call ryan's thing
-
-
-
+        statisticsLogger.addPieceToStat(t.blockName);
+        statisticsLogger.writeToFile(difficulty);
         gameCallback.changeOfBlock(currentBlock);
-
-
         currentBlock = t;
     }
-
-
 
     public void removeFilledLine() {
         for (int y = 0; y < gameGrid1.nbVertCells; y++) {
@@ -147,6 +146,7 @@ public abstract class Levels {
                 }
                 gameGrid1.refresh();
                 score++;
+                statisticsLogger.updateRoundScore(rounds, score);
                 gameCallback.changeOfScore(score);
                 uiController.showScore(score);
                 // Set speed of tetrisBlocks
@@ -177,6 +177,7 @@ public abstract class Levels {
 
     public void incrementRoundCount() {
         this.rounds++;
+        statisticsLogger.updateRoundScore(rounds, score);
     }
 
     public boolean canRotate(){
