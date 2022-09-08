@@ -162,14 +162,14 @@ public class Levels {
     public void gameOver() {
         currentBlock = null;
         uiController.showGameOver();
-        gameGrid1.doPause();
+
         if (isAuto) {
             System.exit(0);
         }
     }
     /*helper function for returning a block Id out of the valid blocks*/
     private int generateRandomBlockId(){
-        return random.nextInt(10);
+        return random.nextInt(7);
     }
 
     public void incrementRoundCount() {

@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.util.Properties;
 
 public class UIController {
-    private TetrisPiece currentBlock = null;  // Currently active block
     private TetrisPiece blockPreview = null;   // block in preview window
     private Levels levels;
     private int score = 0;
@@ -28,30 +27,32 @@ public class UIController {
     }
     void showGameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
+        gameGrid1.doPause();
     }
 
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
         if (levels.getCurrentBlock() != null) {
-            currentBlock = levels.getCurrentBlock();
+            TetrisPiece currentBlock = levels.getCurrentBlock();
+            switch (keyEvent) {
+                case KeyEvent.VK_UP:
+                    currentBlock.rotate();
+                    break;
+                case KeyEvent.VK_LEFT:
+                    currentBlock.left();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    currentBlock.right();
+                    break;
+                case KeyEvent.VK_DOWN:
+                    currentBlock.drop();
+                    break;
+                default:
+                    return;
+            }
         }
-        switch (keyEvent) {
-            case KeyEvent.VK_UP:
-                currentBlock.rotate();
-                break;
-            case KeyEvent.VK_LEFT:
-                currentBlock.left();
-                break;
-            case KeyEvent.VK_RIGHT:
-                currentBlock.right();
-                break;
-            case KeyEvent.VK_DOWN:
-                currentBlock.drop();
-                break;
-            default:
-                return;
-        }
+
     }
 
     public void showScore(final int score) {
@@ -61,11 +62,15 @@ public class UIController {
             }
         });
     }
-    public TetrisPiece createFirstTetrisBlock() {
+
+
+    public void start(){
         levels.incrementRoundCount();
-        currentBlock = levels.createRandomTetrisBlock();
-        return currentBlock;
+        TetrisPiece currentBlock = levels.createRandomTetrisBlock();
+        levels.setCurrentTetrisBlock(currentBlock);
+        gameGrid1.addActor(currentBlock, new Location(6, 0));
     }
+
 
     public void act() {
         moveBlock(gameGrid1.getKeyCode());

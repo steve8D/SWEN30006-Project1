@@ -35,8 +35,7 @@ public class Tetris extends JFrame implements GGActListener {
 
         // Add the first block to start
         uiController = new UIController(gameCallback, properties, this);
-        currentBlock = uiController.createFirstTetrisBlock();
-        gameGrid1.addActor(currentBlock, new Location(6, 0));
+        uiController.start();
         gameGrid1.doRun();
 
         // Do not lose keyboard focus when clicking this window
@@ -58,8 +57,9 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.refresh();
         gameGrid2.refresh();
         gameGrid2.delay(getDelayTime());
-        currentBlock = uiController.createFirstTetrisBlock();
-        gameGrid1.addActor(currentBlock, new Location(6, 0));
+
+        uiController.start();
+
         gameGrid1.doRun();
         gameGrid1.requestFocus();
     }
