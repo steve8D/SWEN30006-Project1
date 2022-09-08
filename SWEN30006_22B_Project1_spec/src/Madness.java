@@ -9,11 +9,13 @@ public class Madness extends Levels{
 
     @Override
     protected int generateRandomBlockId() {
+        // allows for 3 extra pieces
         return random.nextInt(10);
     }
 
     @Override
     public double getSpeedMultiplier() {
+        // increases the speed by between 1 and 2 times the speed
         double randomMultiplier = Math.random()+1; //random number from 1 to 2
 
         return 1/randomMultiplier;
@@ -29,6 +31,7 @@ public class Madness extends Levels{
 
     @Override
     public boolean canRotate() {
+
         return false;
     }
 }

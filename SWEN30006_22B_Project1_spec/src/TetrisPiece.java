@@ -6,14 +6,14 @@ import java.util.ArrayList;
 
 public abstract class TetrisPiece extends Actor {
     protected String blockName;
-    protected int ID;
+
     private Location[][] r ;
 
     TetrisPiece(Levels levels, String blockName, int blockId) {
         super();
         this.levels = levels;
         this.blockName = blockName;
-        this.ID = blockId;
+
 
         // no source is available for the new tetris blocks images 0, 1 and 2
         int sourceGifId = blockId%7;
@@ -24,6 +24,7 @@ public abstract class TetrisPiece extends Actor {
             blocks.add(new TetroBlock(sourceGifId, r[i]));
     }
 
+    // requires that child classes implements the specific shape via the r[][] matrix
     protected abstract Location[][] updateRotationId( );
 
     public String toString() {

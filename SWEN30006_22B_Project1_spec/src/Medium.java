@@ -10,11 +10,13 @@ public class Medium extends Levels{
 
     @Override
     protected int generateRandomBlockId() {
+        //allows for 3 extra pieces
         return random.nextInt(10);
     }
 
     @Override
     public double getSpeedMultiplier() {
+        // increases the speed by 20%
         return 1/1.2;
     }
 }
