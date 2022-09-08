@@ -26,7 +26,7 @@ public abstract class Levels {
     protected UIController uiController;
     private ch.aplu.jgamegrid.GameGrid gameGrid1;
     public Levels(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
-        initWithProperties(properties);
+        initProperties(properties);
         this.gameCallback = gameCallback;
         this.uiController = uiController;
         this.gameGrid1 = uiController.gameGrid1;
@@ -37,7 +37,7 @@ public abstract class Levels {
     }
 
     // Initialise object
-    private void initWithProperties(Properties properties) {
+    private void initProperties(Properties properties) {
         this.seed = Integer.parseInt(properties.getProperty("seed", "30006"));
         random = new Random(seed);
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
@@ -116,9 +116,7 @@ public abstract class Levels {
         currentBlock = t;
     }
 
-    private void setSlowDown(int slowDown) {
-        this.slowDown = slowDown;
-    }
+
 
     public void removeFilledLine() {
         for (int y = 0; y < gameGrid1.nbVertCells; y++) {
@@ -175,5 +173,9 @@ public abstract class Levels {
 
     public void incrementRoundCount() {
         this.rounds++;
+    }
+
+    public boolean canRotate(){
+        return true;
     }
 }

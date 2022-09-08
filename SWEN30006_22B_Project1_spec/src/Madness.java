@@ -22,7 +22,13 @@ public class Madness extends Levels{
     @Override
     public void setCurrentTetrisBlock(TetrisPiece t) {
         super.setCurrentTetrisBlock(t);
+        // madness needs to generate a new fall speed for each new piece
         uiController.newFallSpeed();
 
+    }
+
+    @Override
+    public boolean canRotate() {
+        return false;
     }
 }

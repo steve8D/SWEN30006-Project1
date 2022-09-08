@@ -25,7 +25,7 @@ public class Tetris extends JFrame implements GGActListener {
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
         // Initialise value
-        initWithProperties(properties);
+        isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
 
         // Set up the UI components. No need to modify the UI Components
         tetrisComponents = new TetrisComponents();
@@ -45,10 +45,7 @@ public class Tetris extends JFrame implements GGActListener {
         setTitle("SWEN30006 Tetris Madness");
     }
 
-    // Initialise object
-    private void initWithProperties(Properties properties) {
-        isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
-    }
+
 
     // Start a new game
     public void startBtnActionPerformed(java.awt.event.ActionEvent evt)

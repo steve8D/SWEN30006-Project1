@@ -53,7 +53,10 @@ public class UIController {
             TetrisPiece currentBlock = levels.getCurrentBlock();
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    currentBlock.rotate();
+                    if(levels.canRotate()){
+                        currentBlock.rotate();
+                    }
+
                     break;
                 case KeyEvent.VK_LEFT:
                     currentBlock.left();
@@ -86,8 +89,8 @@ public class UIController {
         levels.setCurrentTetrisBlock(currentBlock);
         gameGrid1.addActor(currentBlock, new Location(6, 0));
 
-
-        gameGrid1.setSimulationPeriod(getSimulationTime());
+        //begin the fall speed
+        newFallSpeed();
     }
 
     public void newFallSpeed(){
