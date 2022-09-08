@@ -11,16 +11,19 @@ public class UIController {
     private TetrisPiece blockPreview = null;   // block in preview window
     private Levels levels;
     private int score = 0;
+
+    private boolean isAuto = false;
+
     public UIController(TetrisGameCallback gameCallback, Properties properties, Tetris tetris) {
         gameGrid1 = tetris.gameGrid1;
         gameGrid2 = tetris.gameGrid2;
         scoreText = tetris.scoreText;
 
         String difficulty = properties.getProperty("difficulty");
+        isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
         System.out.println(difficulty);
         if(difficulty.equals( "easy")){
             levels = new Easy(gameCallback, properties, this);
-
         }
         else if(difficulty.equals("medium")){
             levels = new Medium(gameCallback, properties, this);
@@ -82,6 +85,13 @@ public class UIController {
         TetrisPiece currentBlock = levels.createRandomTetrisBlock();
         levels.setCurrentTetrisBlock(currentBlock);
         gameGrid1.addActor(currentBlock, new Location(6, 0));
+
+
+        gameGrid1.setSimulationPeriod(getSimulationTime());
+    }
+
+    public void newFallSpeed(){
+        gameGrid1.setSimulationPeriod(getSimulationTime());
     }
 
 
@@ -97,5 +107,19 @@ public class UIController {
 
     public Levels getLevels() {
         return levels;
+    }
+
+    // Different speed for manual and auto mode
+    private int getSimulationTime() {
+        int simulationTime;
+        if (isAuto) {
+            simulationTime= 10;
+        } else {
+            simulationTime= 100;
+        }
+        // simulation time is multiplied by difficulty speed boost
+        simulationTime=(int) (simulationTime*levels.getSpeedMultiplier());
+
+        return (simulationTime);
     }
 }

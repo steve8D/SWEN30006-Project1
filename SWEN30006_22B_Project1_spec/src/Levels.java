@@ -23,7 +23,7 @@ public abstract class Levels {
     private String [] blockActions = new String[10];
     private int blockActionIndex = 0;
     private TetrisGameCallback gameCallback;
-    private UIController uiController;
+    protected UIController uiController;
     private ch.aplu.jgamegrid.GameGrid gameGrid1;
     public Levels(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
         initWithProperties(properties);
@@ -111,6 +111,8 @@ public abstract class Levels {
     }
     public void setCurrentTetrisBlock(TetrisPiece t) {
         gameCallback.changeOfBlock(currentBlock);
+
+
         currentBlock = t;
     }
 

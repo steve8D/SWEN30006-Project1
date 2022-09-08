@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class Driver {
-    public static final String DEFAULT_PROPERTIES_PATH = "SWEN30006_22B_Project1_spec\\properties\\test3.properties";
+    public static final String DEFAULT_PROPERTIES_PATH = "SWEN30006_22B_Project1_spec\\properties\\test1.properties";
 
     /**
      * Starting point

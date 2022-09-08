@@ -18,4 +18,11 @@ public class Madness extends Levels{
 
         return 1/randomMultiplier;
     }
+
+    @Override
+    public void setCurrentTetrisBlock(TetrisPiece t) {
+        super.setCurrentTetrisBlock(t);
+        uiController.newFallSpeed();
+
+    }
 }
