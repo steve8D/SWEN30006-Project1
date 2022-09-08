@@ -110,7 +110,7 @@ public abstract class TetrisPiece extends Actor {
         }
     }
 
-    void display(GameGrid gg, Location location)
+    public void display(GameGrid gg, Location location)
     {
         for (TetroBlock a : blocks)
         {

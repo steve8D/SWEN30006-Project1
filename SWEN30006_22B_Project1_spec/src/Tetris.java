@@ -60,9 +60,6 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.requestFocus();
     }
 
-
-
-
     private int getDelayTime() {
         if (isAuto) {
             return 200;

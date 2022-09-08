@@ -8,9 +8,6 @@ public class TetroBlock extends Actor
   // Display a single square in a Tetris piece
   public TetroBlock(int blockId, Location[] relLoc)
   {
-
-
-
     super("sprites/tetroblock" + blockId + ".gif");
     this.relLoc = relLoc.clone();
   }

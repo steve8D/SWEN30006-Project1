@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.util.Properties;
 
 public class UIController {
+    protected ch.aplu.jgamegrid.GameGrid gameGrid1;
+    private ch.aplu.jgamegrid.GameGrid gameGrid2;
+    private javax.swing.JTextField scoreText;
     private TetrisPiece blockPreview = null;   // block in preview window
     private Levels levels;
     private int score = 0;
@@ -107,11 +110,6 @@ public class UIController {
         moveBlock(gameGrid1.getKeyCode());
         levels.removeFilledLine();
     }
-
-    protected ch.aplu.jgamegrid.GameGrid gameGrid1;
-    private ch.aplu.jgamegrid.GameGrid gameGrid2;
-    private javax.swing.JTextField scoreText;
-
 
     public Levels getLevels() {
         return levels;
