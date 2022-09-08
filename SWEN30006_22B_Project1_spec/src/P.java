@@ -7,9 +7,9 @@ class P extends TetrisPiece
     private static final int BLOCK_ID = 8;
     private static final String BLOCK_NAME = "P";
 
-    P(Tetris tetris)
+    P(Levels levels)
     {
-        super(tetris, BLOCK_NAME, BLOCK_ID);
+        super(levels, BLOCK_NAME, BLOCK_ID);
     }
 
     @Override
