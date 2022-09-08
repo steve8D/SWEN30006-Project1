@@ -107,7 +107,6 @@ public abstract class Levels {
         if (isAuto) {
             t.setAutoBlockMove(currentBlockMove);
         }
-        statisticsLogger.addPieceToStat(t.blockName);
         uiController.showBlockPreview(preview);
 
         // Show preview tetrisBlock
