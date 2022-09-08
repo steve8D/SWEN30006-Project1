@@ -14,7 +14,7 @@ public class Medium extends Levels{
     }
 
     @Override
-    protected double getSpeedMultiplier() {
+    public double getSpeedMultiplier() {
         return 1/1.2;
     }
 }

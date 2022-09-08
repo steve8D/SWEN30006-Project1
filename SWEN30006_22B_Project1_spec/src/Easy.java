@@ -14,7 +14,7 @@ public class Easy extends Levels{
     }
 
     @Override
-    protected double getSpeedMultiplier() {
+    public double getSpeedMultiplier() {
         return 1;
     }
 }

@@ -13,7 +13,7 @@ public class Madness extends Levels{
     }
 
     @Override
-    protected double getSpeedMultiplier() {
+    public double getSpeedMultiplier() {
         double randomMultiplier = Math.random()+1; //random number from 1 to 2
 
         return 1/randomMultiplier;

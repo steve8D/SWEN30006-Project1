@@ -31,11 +31,14 @@ public class Tetris extends JFrame implements GGActListener {
         tetrisComponents = new TetrisComponents();
         tetrisComponents.initComponents(this);
         gameGrid1.addActListener(this);
-        gameGrid1.setSimulationPeriod(getSimulationTime());
+
 
         // Add the first block to start
         uiController = new UIController(gameCallback, properties, this);
         uiController.start();
+
+        gameGrid1.setSimulationPeriod(getSimulationTime());
+        
         gameGrid1.doRun();
 
         // Do not lose keyboard focus when clicking this window
@@ -66,12 +69,18 @@ public class Tetris extends JFrame implements GGActListener {
 
     // Different speed for manual and auto mode
     private int getSimulationTime() {
+        int simulationTime;
         if (isAuto) {
-            return 10;
+            simulationTime= 10;
         } else {
-            return 100;
+            simulationTime= 100;
         }
+        // simulation time is multiplied by difficulty speed boost
+        simulationTime=(int) (simulationTime*uiController.getLevels().getSpeedMultiplier());
+
+        return (simulationTime);
     }
+
 
     private int getDelayTime() {
         if (isAuto) {

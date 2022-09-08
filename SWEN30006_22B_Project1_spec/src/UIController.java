@@ -93,4 +93,9 @@ public class UIController {
     protected ch.aplu.jgamegrid.GameGrid gameGrid1;
     private ch.aplu.jgamegrid.GameGrid gameGrid2;
     private javax.swing.JTextField scoreText;
+
+
+    public Levels getLevels() {
+        return levels;
+    }
 }

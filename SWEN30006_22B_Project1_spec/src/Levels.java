@@ -169,7 +169,7 @@ public abstract class Levels {
     }
     /*helper function for returning a block Id out of the valid blocks*/
     abstract protected int generateRandomBlockId();
-    abstract protected double getSpeedMultiplier();
+    public abstract double getSpeedMultiplier();
 
     public void incrementRoundCount() {
         this.rounds++;
