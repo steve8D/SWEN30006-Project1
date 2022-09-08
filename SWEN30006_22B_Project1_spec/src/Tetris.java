@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.util.Properties;
 
 public class Tetris extends JFrame implements GGActListener {
-    private TetrisPiece currentBlock = null;  // Currently active block
     private UIController uiController;
     private boolean isAuto = false;
 
