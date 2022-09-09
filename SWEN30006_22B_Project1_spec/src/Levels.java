@@ -21,9 +21,9 @@ public abstract class Levels {
     // L is for Left, R is for Right, T is for turning (rotating), and D for down
     private String[] blockActions = new String[10];
     private int blockActionIndex = 0;
-    private final TetrisGameCallback gameCallback;
-    private final StatisticsLogger statisticsLogger;
-    private final ch.aplu.jgamegrid.GameGrid gameGrid1;
+    private TetrisGameCallback gameCallback;
+    private StatisticsLogger statisticsLogger;
+    private ch.aplu.jgamegrid.GameGrid gameGrid1;
     public Levels(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
         initProperties(properties);
         this.statisticsLogger = new StatisticsLogger();

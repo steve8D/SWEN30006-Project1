@@ -7,8 +7,8 @@ import ch.aplu.jgamegrid.Location;
 import java.util.ArrayList;
 
 public abstract class TetrisPiece extends Actor {
-    private final Location[][] r;
-    private final ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
+    private Location[][] r;
+    private ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
     protected String blockName;
     protected Levels levels;
     private boolean isStarting = true;

@@ -17,9 +17,9 @@ public class Tetris extends JFrame implements GGActListener {
     public javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextField scoreText;
     public javax.swing.JButton startBtn;
-    private final UIController uiController;
+    private UIController uiController;
     private boolean isAuto = false;
-    private final TetrisComponents tetrisComponents;
+    private TetrisComponents tetrisComponents;
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
         // Initialise value
