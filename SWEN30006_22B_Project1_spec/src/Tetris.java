@@ -1,15 +1,12 @@
 package src;
 
 import ch.aplu.jgamegrid.GGActListener;
-import ch.aplu.jgamegrid.Location;
+import ch.aplu.jgamegrid.GameGrid;
 
 import javax.swing.*;
 import java.util.Properties;
 
 public class Tetris extends JFrame implements GGActListener {
-    private UIController uiController;
-    private boolean isAuto = false;
-
     public ch.aplu.jgamegrid.GameGrid gameGrid1;
     public ch.aplu.jgamegrid.GameGrid gameGrid2;
     public javax.swing.JPanel jPanel1;
@@ -20,6 +17,8 @@ public class Tetris extends JFrame implements GGActListener {
     public javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextField scoreText;
     public javax.swing.JButton startBtn;
+    private UIController uiController;
+    private boolean isAuto = false;
     private TetrisComponents tetrisComponents;
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -42,16 +41,14 @@ public class Tetris extends JFrame implements GGActListener {
     }
 
 
-
     // Start a new game
-    public void startBtnActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void startBtnActionPerformed(java.awt.event.ActionEvent evt) {
         gameGrid1.doPause();
         gameGrid1.removeAllActors();
         gameGrid2.removeAllActors();
         gameGrid1.refresh();
         gameGrid2.refresh();
-        gameGrid2.delay(getDelayTime());
+        GameGrid.delay(getDelayTime());
 
         uiController.start();
 

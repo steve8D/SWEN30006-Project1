@@ -1,42 +1,41 @@
 // S.java
 package src;
-import ch.aplu.jgamegrid.*;
 
-class S extends TetrisPiece
-{
-  private static final int BLOCK_ID = 4;
-  private static final String BLOCK_NAME = "S";
+import ch.aplu.jgamegrid.Location;
 
-  S(Levels levels)
-  {
-    super(levels, BLOCK_NAME, BLOCK_ID);
-  }
+class S extends TetrisPiece {
+    private static final int BLOCK_ID = 4;
+    private static final String BLOCK_NAME = "S";
 
-  @Override
-  protected Location[][] updateRotationId() {
+    S(Levels levels) {
+        super(levels, BLOCK_NAME, BLOCK_ID);
+    }
 
-    Location[][] r = new Location[4][4];
-    // rotId 0
-    r[0][0] = new Location(new Location(1, 0));
-    r[1][0] = new Location(new Location(0, 0));
-    r[2][0] = new Location(new Location(0, 1));
-    r[3][0] = new Location(new Location(-1, 1));
-    // rotId 1
-    r[0][1] = new Location(new Location(0, 1));
-    r[1][1] = new Location(new Location(0, 0));
-    r[2][1] = new Location(new Location(-1, 0));
-    r[3][1] = new Location(new Location(-1, -1));
-    // rotId 2
-    r[0][2] = new Location(new Location(-1, 0));
-    r[1][2] = new Location(new Location(0, 0));
-    r[2][2] = new Location(new Location(0, -1));
-    r[3][2] = new Location(new Location(1, -1));
-    // rotId 3
-    r[0][3] = new Location(new Location(0, -1));
-    r[1][3] = new Location(new Location(0, 0));
-    r[2][3] = new Location(new Location(1, 0));
-    r[3][3] = new Location(new Location(1, 1));
+    @Override
+    protected Location[][] updateRotationId() {
 
-    return r;
-  }
+        Location[][] r = new Location[4][4];
+        // rotId 0
+        r[0][0] = new Location(new Location(1, 0));
+        r[1][0] = new Location(new Location(0, 0));
+        r[2][0] = new Location(new Location(0, 1));
+        r[3][0] = new Location(new Location(-1, 1));
+        // rotId 1
+        r[0][1] = new Location(new Location(0, 1));
+        r[1][1] = new Location(new Location(0, 0));
+        r[2][1] = new Location(new Location(-1, 0));
+        r[3][1] = new Location(new Location(-1, -1));
+        // rotId 2
+        r[0][2] = new Location(new Location(-1, 0));
+        r[1][2] = new Location(new Location(0, 0));
+        r[2][2] = new Location(new Location(0, -1));
+        r[3][2] = new Location(new Location(1, -1));
+        // rotId 3
+        r[0][3] = new Location(new Location(0, -1));
+        r[1][3] = new Location(new Location(0, 0));
+        r[2][3] = new Location(new Location(1, 0));
+        r[3][3] = new Location(new Location(1, 1));
+
+        return r;
+    }
 }

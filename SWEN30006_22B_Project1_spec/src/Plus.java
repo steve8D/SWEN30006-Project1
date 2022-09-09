@@ -1,14 +1,13 @@
 // Plus.java
 package src;
-import ch.aplu.jgamegrid.*;
 
-class Plus extends TetrisPiece
-{
+import ch.aplu.jgamegrid.Location;
+
+class Plus extends TetrisPiece {
     private static final int BLOCK_ID = 7;
     private static final String BLOCK_NAME = "+";
 
-    Plus(Levels levels)
-    {
+    Plus(Levels levels) {
         super(levels, BLOCK_NAME, BLOCK_ID);
     }
 

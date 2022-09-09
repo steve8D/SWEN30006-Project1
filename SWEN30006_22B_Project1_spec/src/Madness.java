@@ -31,7 +31,6 @@ public class Madness extends Levels{
 
     @Override
     public boolean canRotate() {
-
         return false;
     }
 }

@@ -8,23 +8,20 @@ import java.util.Properties;
 import java.util.Random;
 
 public abstract class Levels {
+    protected Random random = new Random(0);
+    protected UIController uiController;
     private TetrisPiece currentBlock = null;  // Currently active block
-    public TetrisPiece getCurrentBlock() {
-        return currentBlock;
-    }
     private int score = 0;
     private int slowDown = 5;
     private int rounds = 0;
     private String difficulty;
     private boolean isAuto = false;
-    protected Random random = new Random(0);
     private int seed = 30006;
     // For testing mode, the block will be moved automatically based on the blockActions.
     // L is for Left, R is for Right, T is for turning (rotating), and D for down
-    private String [] blockActions = new String[10];
+    private String[] blockActions = new String[10];
     private int blockActionIndex = 0;
     private TetrisGameCallback gameCallback;
-    protected UIController uiController;
     private StatisticsLogger statisticsLogger;
     private ch.aplu.jgamegrid.GameGrid gameGrid1;
     public Levels(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
@@ -37,6 +34,10 @@ public abstract class Levels {
         this.score = 0;
         this.rounds = 0;
         this.slowDown = 5;
+    }
+
+    public TetrisPiece getCurrentBlock() {
+        return currentBlock;
     }
 
     // Initialise object
@@ -113,6 +114,7 @@ public abstract class Levels {
         t.setSlowDown(slowDown);
         return t;
     }
+
     public void setCurrentTetrisBlock(TetrisPiece t) {
         statisticsLogger.addPieceToStat(t.blockName);
         statisticsLogger.writeToFile(difficulty);
@@ -162,6 +164,7 @@ public abstract class Levels {
             }
         }
     }
+
     public void gameOver() {
         currentBlock = null;
         uiController.showGameOver();
@@ -170,16 +173,18 @@ public abstract class Levels {
             System.exit(0);
         }
     }
+
     /*helper function for returning a block Id out of the valid blocks*/
-    abstract protected int generateRandomBlockId();
-    public abstract double getSpeedMultiplier();
+    protected abstract int generateRandomBlockId();
+
+    protected abstract double getSpeedMultiplier();
 
     public void incrementRoundCount() {
         this.rounds++;
         statisticsLogger.updateRoundScore(rounds, score);
     }
 
-    public boolean canRotate(){
+    public boolean canRotate() {
         return true;
     }
 }

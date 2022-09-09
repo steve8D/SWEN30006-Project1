@@ -24,15 +24,12 @@ public class UIController {
 
         String difficulty = properties.getProperty("difficulty");
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
-        System.out.println(difficulty);
 
-        if(difficulty.equals( "easy")){
+        if (difficulty.equals("easy")) {
             levels = new Easy(gameCallback, properties, this);
-        }
-        else if(difficulty.equals("medium")){
+        } else if (difficulty.equals("medium")) {
             levels = new Medium(gameCallback, properties, this);
-        }
-        else if(difficulty.equals("madness")){
+        } else if (difficulty.equals("madness")) {
             levels = new Madness(gameCallback, properties, this);
         }
 
@@ -61,7 +58,7 @@ public class UIController {
             TetrisPiece currentBlock = levels.getCurrentBlock();
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    if(levels.canRotate()){
+                    if (levels.canRotate()) {
                         currentBlock.rotate();
                     }
                     break;
@@ -75,7 +72,6 @@ public class UIController {
                     currentBlock.drop();
                     break;
                 default:
-                    return;
             }
         }
 
@@ -91,7 +87,7 @@ public class UIController {
     }
 
     //  called when a round starts
-    public void start(){
+    public void start() {
         levels.incrementRoundCount();
         TetrisPiece currentBlock = levels.createRandomTetrisBlock();
         levels.setCurrentTetrisBlock(currentBlock);
@@ -101,7 +97,7 @@ public class UIController {
         newFallSpeed();
     }
 
-    public void newFallSpeed(){
+    public void newFallSpeed() {
         gameGrid1.setSimulationPeriod(getSimulationTime());
     }
 
@@ -119,12 +115,12 @@ public class UIController {
     private int getSimulationTime() {
         int simulationTime;
         if (isAuto) {
-            simulationTime= 10;
+            simulationTime = 10;
         } else {
-            simulationTime= 100;
+            simulationTime = 100;
         }
         // simulation time is multiplied by difficulty speed boost
-        simulationTime=(int) (simulationTime*levels.getSpeedMultiplier());
+        simulationTime = (int) (simulationTime * levels.getSpeedMultiplier());
 
         return (simulationTime);
     }
