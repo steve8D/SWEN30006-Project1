@@ -35,7 +35,7 @@ public abstract class TetrisPiece extends Actor {
     private boolean isStarting = true;
     private int rotId = 0;
     private int nb;
-    protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
+    private ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
     private Actor nextTetrisBlock = null;
     private String autoBlockMove = "";
     private int autoBlockIndex = 0;
