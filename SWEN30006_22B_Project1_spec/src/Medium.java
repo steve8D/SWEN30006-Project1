@@ -2,7 +2,7 @@ package src;
 
 import java.util.Properties;
 
-public class Medium extends Levels{
+public class Medium extends Levels {
 
     public Medium(TetrisGameCallback gameCallback, Properties properties, UIController uiController) {
         super(gameCallback, properties, uiController);
@@ -17,6 +17,6 @@ public class Medium extends Levels{
     @Override
     public double getSpeedMultiplier() {
         // increases the speed by 20%
-        return 1/1.2;
+        return 1 / 1.2;
     }
 }
