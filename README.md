@@ -3,8 +3,8 @@ This is our code submission for project 1 in SWEN30006 Semester 2 2022. Feel fre
 
 The original code for this assignment can be found at branch original-code
 ### Domain Class Diagram
-![Domain Class Diagram](/SWEN30006_22B_Project1_spec/diagrams/SWEN30006 Project 1-Domain class diagram.drawio.png)
+![Domain Class Diagram](/SWEN30006_22B_Project1_spec/diagrams/Domain-class-diagram.png)
 ### Design Class Diagram
-![Design Class Diagram](/SWEN30006_22B_Project1_spec/diagrams/SWEN30006 Project 1-Design class diagram.drawio.png)
+![Design Class Diagram](/SWEN30006_22B_Project1_spec/diagrams/Design-class-diagram.png)
 ### System Sequence Diagram
-![System Sequence Diagram](/SWEN30006_22B_Project1_spec/diagrams/SWEN30006 Project 1-SSD fix.drawio.png)
+![System Sequence Diagram](/SWEN30006_22B_Project1_spec/diagrams/System-sequence-diagram.png)
