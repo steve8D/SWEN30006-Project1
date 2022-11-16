@@ -1,1 +1,2 @@
-# SWEN30006_22B_Project1
+# SWEN30006_P1
+This is the original code of the project
